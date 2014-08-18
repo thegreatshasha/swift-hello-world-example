@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  swift-hello-world-example
 //
-//  Created by Hirofumi Wakasugi on 2014/08/18.
+//  Created by Mubae Wakasugi on 2014/08/18.
 //  Copyright (c) 2014年 STILLILL. All rights reserved.
 //
 
