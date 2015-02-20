@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         stepper.value = 2.0
         stepperText.text = "\(stepper.value)"
         
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector:Selector("toggleText"), userInfo: nil, repeats: true)
+        var timer = NSTimer.scheduledTimerWithTimeInterval(0.6, target: self, selector:Selector("toggleText"), userInfo: nil, repeats: true)
 
     }
 
