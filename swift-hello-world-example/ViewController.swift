@@ -25,6 +25,9 @@ class ViewController: UIViewController {
     var problemText = ""
     var difficulty = 2
     var diff = 2
+    var timerCount = 0
+    var timerLimit = 10
+    var timerActive = true
     
     
     @IBAction func stepperValueChanged(sender: AnyObject) {
@@ -39,6 +42,9 @@ class ViewController: UIViewController {
         refresh()
         stepper.value = 2.0
         stepperText.text = "\(stepper.value)"
+        
+        var timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector:Selector("toggleText"), userInfo: nil, repeats: true)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,11 +80,15 @@ class ViewController: UIViewController {
         default:
             print("lol")
         }
+        // Todo flashing text
+        // Todo session summary
+        // Todo persistent performance storage
+        // Todo
         
         if(randomIndex != -1) {
             var userAnswer = input.text.toInt()
             if(answer == userAnswer) {
-                label2.text = "Correct"
+                label2.text = "Correct \(problemText) is \(answer)"
             }
             else {
                 label2.text = "Sorry \(problemText) is \(answer)"
@@ -94,8 +104,26 @@ class ViewController: UIViewController {
         num2 = Int(arc4random_uniform(diffInt) + diffInt)
         symbol = array[randomIndex]
         problemText = String(num2) + symbol + String(num1)
-        label.text = "What's " + problemText
+        label.hidden = false
+        label.text = "What's " + problemText;
         input.text = ""
+        
+        timerActive = true;
+        
+    }
+    
+    func toggleText() {
+        if(timerActive){
+            if(timerCount < timerLimit) {
+                    label.hidden = !label.hidden;
+                    timerCount++;
+                }
+            else {
+                timerCount = 0
+                label.hidden = true;
+                timerActive = false;
+            }
+        }
     }
     
     override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
